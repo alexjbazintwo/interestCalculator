@@ -10,7 +10,7 @@ A web-based interest calculator with automated Playwright tests for functionalit
   - Principal amount
   - Interest rate
   - Duration: Daily, Monthly, or Yearly
-- Validations for missing fields: No principal, no interest rate and consent checkbox selections
+- Validations for missing principal, interest rate or consent checkbox selections
 - Responsive UI: mobile, tablet, desktop
 - Accessibility testing via Axe
 - Performance testing using browser timing APIs
