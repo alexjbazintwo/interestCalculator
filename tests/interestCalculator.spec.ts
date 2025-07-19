@@ -51,8 +51,7 @@ test.describe("Interest Calculator App", () => {
     await interestPage.selectDuration("Monthly");
     const dialogMessage = await interestPage.clickCalculateExpectingAlert();
     expect(dialogMessage).toMatch(/fill in all fields/i);
-   // "Clear error messages should be displayed to guide users in case of missing or incorrect inputs". (The above is too generic)
-
+    // "Clear error messages should be displayed to guide users in case of missing or incorrect inputs". (The above is too generic)
   });
 
   test("should show error if interest not entered", async () => {
@@ -128,8 +127,27 @@ test.describe("Interest Calculator App", () => {
     expect(metrics.responseTime).toBeLessThanOrEqual(maxResponseTime);
   });
 
-    test("Interest rates do not exceed 15%", async ({ page }) => {});
-      test("Interest rates do not exceed 15%", async ({ page }) => {});
-        test("Interest rates do not exceed 15%", async ({ page }) => {});
-          test("Interest rates do not exceed 15%", async ({ page }) => {});
+  //unwritten test case
+  test("Dropdown should close after selecting an interest rate", async ({
+    page,
+  }) => {}); // this would fail as the dropdown does not close after selecting an interest rate
+  test("Interest rates do not exceed 15%", async ({ page }) => {});
+  test("Basic test to make sure all elements are present on the page", async ({
+    page,
+  }) => {});
+  test("Interest should be rounded to two decimal places", async ({
+    page,
+  }) => {});
+
+  test("Total amount should be rounded to two decimal places", async ({
+    page,
+  }) => {});
+
+  test("Calculated values should reset if inputs are changed after a calculation", async ({
+    page,
+  }) => {});
+
+  test("Error message should disappear after the user corrects the missing input", async ({
+    page,
+  }) => {});
 });
