@@ -135,18 +135,9 @@ test.describe("Interest Calculator App", () => {
   test("Basic test to make sure all elements are present on the page", async ({
     page,
   }) => {});
-  test("Interest should be rounded to two decimal places", async ({
-    page,
-  }) => {});
-
-  test("Total amount should be rounded to two decimal places", async ({
-    page,
-  }) => {});
-
   test("Calculated values should reset if inputs are changed after a calculation", async ({
     page,
   }) => {});
-
   test("Error message should disappear after the user corrects the missing input", async ({
     page,
   }) => {});
