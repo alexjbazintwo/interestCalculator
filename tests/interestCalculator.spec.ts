@@ -21,12 +21,12 @@ test.describe("Interest Calculator App", () => {
 
   const testCases: TestCase[] = [
     { principal: 2000, rate: 10, duration: "Daily" },
-    { principal: 5000, rate: 8, duration: "Monthly" }, // FAILS AS MONTHLY CALUCLATED DIVIDED BY 10, IT SHOULD BE 12
+    { principal: 5000, rate: 8, duration: "Monthly" }, // FAILS AS MONTHLY CALUCLATION DIVIDED BY 10, IT SHOULD BE 12
     { principal: 7500, rate: 4, duration: "Yearly" },
   ];
 
   for (const { principal, rate, duration } of testCases) {
-    test(`If principal=${principal}, rate=${rate}%, duration=${duration} then the output should be as expected`, async () => {
+    test(`If the initial principal=${principal}, the rate=${rate}% and the duration=${duration}, then the output should be as expected`, async () => {
       await interestPage.setPrincipalAmount(principal);
       await interestPage.selectInterestRate(rate);
       await interestPage.selectDuration(duration);
@@ -45,21 +45,21 @@ test.describe("Interest Calculator App", () => {
   }
 
   //FAILS AS NO ERROR SHOWN IF CONSENT NOT GIVEN
-  test("should show error if consent is not given", async () => {
+  test("Should show error if consent is not given", async () => {
     await interestPage.setPrincipalAmount(1000);
     await interestPage.selectInterestRate(5);
     await interestPage.selectDuration("Monthly");
     const dialogMessage = await interestPage.clickCalculateExpectingAlert();
     expect(dialogMessage).toMatch(/fill in all fields/i);
-    // "Clear error messages should be displayed to guide users in case of missing or incorrect inputs". (The above is too generic)
+    // "Clear error messages should be displayed to guide users in case of missing or incorrect inputs". ("Fill in all fields" is too generic)
   });
 
-  test("should show error if interest not entered", async () => {
+  test("Should show error if interest not entered", async () => {
     const dialogMessage = await interestPage.clickCalculateExpectingAlert();
     expect(dialogMessage).toMatch(/fill in all fields/i);
   });
 
-  test("should show error if 0 entered as principal", async () => {
+  test("Sshould show error if 0 entered as principal", async () => {
     await interestPage.setPrincipalAmount(0);
     await interestPage.selectInterestRate(5);
     await interestPage.selectDuration("Yearly");
@@ -75,7 +75,7 @@ test.describe("Interest Calculator App", () => {
   ];
 
   for (const viewport of viewports) {
-    test(`should render correctly on ${viewport.name}`, async ({ page }) => {
+    test(`Should render correctly on ${viewport.name}`, async ({ page }) => {
       await page.setViewportSize({
         width: viewport.width,
         height: viewport.height,
@@ -116,8 +116,9 @@ test.describe("Interest Calculator App", () => {
         responseTime: navEntry.responseEnd - navEntry.startTime,
       };
     });
-
+    // Log the actual metrics for debugging
     console.table(metrics);
+    //made up values for the sake of the test
     const maxDOMContentLoaded = 100;
     const maxLoadEventEnd = 200;
     const maxResponseTime = 100;
@@ -127,10 +128,10 @@ test.describe("Interest Calculator App", () => {
     expect(metrics.responseTime).toBeLessThanOrEqual(maxResponseTime);
   });
 
-  //unwritten test case
+  //Possible other test cases
   test("Dropdown should close after selecting an interest rate", async ({
     page,
-  }) => {}); // this would fail as the dropdown does not close after selecting an interest rate
+  }) => {});
   test("Interest rates do not exceed 15%", async ({ page }) => {});
   test("Basic test to make sure all elements are present on the page", async ({
     page,
@@ -138,7 +139,7 @@ test.describe("Interest Calculator App", () => {
   test("Calculated values should reset if inputs are changed after a calculation", async ({
     page,
   }) => {});
-  test("Error message should disappear after the user corrects the missing input", async ({
+  test("Error message should disappear after dismissing error", async ({
     page,
   }) => {});
 });

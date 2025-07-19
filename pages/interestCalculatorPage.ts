@@ -86,16 +86,4 @@ export class InterestCalculatorPage {
     await this.page.waitForTimeout(100);
     return dialogMessage;
   }
-
-  async getInterestResult() {
-    return this.page.locator("#interestAmount").textContent();
-  }
-
-  async getTotalAmountResult() {
-    return this.page.locator("#totalAmount").textContent();
-  }
-
-  async getErrorMessages() {
-    return this.page.locator(".text-danger, .alert, .error").allTextContents();
-  }
 }
