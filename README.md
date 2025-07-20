@@ -1,12 +1,12 @@
 # Interest Calculator
 
-A web-based interest calculator with automated Playwright tests for functionality, responsiveness, accessibility, and performance.
+Playwright framework to test for functionality, responsiveness, accessibility, and performance of a web-based interest calculator
 
 ---
 
 ## 📐 Features
 
-- Calculate interest based on:
+- Validate the calculator correctly calculates interest and total based on:
   - Principal amount
   - Interest rate
   - Duration: Daily, Monthly, or Yearly
