@@ -1,4 +1,9 @@
 export type Duration = "Daily" | "Monthly" | "Yearly";
+export type CalculatorInputs = {
+  principal: number;
+  rate: number;
+  duration: Duration;
+};
 
 export const calculateInterest = (
   principal: number,

@@ -1,14 +1,8 @@
 import { test, expect } from "@playwright/test";
 import { InterestCalculatorPage } from "../pages/interestCalculatorPage";
 import { login } from "../utils/login";
-import { Duration, calculateInterest } from "../utils/calculateInterest";
+import { CalculatorInputs, calculateInterest } from "../utils/calculateInterest";
 import { checkA11y } from "../utils/accessibility";
-
-type TestCase = {
-  principal: number;
-  rate: number;
-  duration: Duration;
-};
 
 test.describe("Interest Calculator App", () => {
   let interestPage: InterestCalculatorPage;
@@ -19,9 +13,9 @@ test.describe("Interest Calculator App", () => {
     await interestPage.goto();
   });
 
-  const testCases: TestCase[] = [
+  const testCases: CalculatorInputs[] = [
     { principal: 2000, rate: 10, duration: "Daily" },
-    { principal: 5000, rate: 8, duration: "Monthly" }, // FAILS AS MONTHLY CALUCLATION DIVIDED BY 10, IT SHOULD BE 12
+    { principal: 5000, rate: 8, duration: "Monthly" }, // FAILS AS MONTHLY CALUCLATION DIVIDED BY 10, IT SHOULD BE BY 12
     { principal: 7500, rate: 4, duration: "Yearly" },
   ];
 
@@ -51,7 +45,7 @@ test.describe("Interest Calculator App", () => {
     await interestPage.selectDuration("Monthly");
     const dialogMessage = await interestPage.clickCalculateExpectingAlert();
     expect(dialogMessage).toMatch(/fill in all fields/i);
-    // "Clear error messages should be displayed to guide users in case of missing or incorrect inputs". ("Fill in all fields" is too generic)
+    // Requirement: "Clear error messages should be displayed to guide users in case of missing or incorrect inputs" - "Fill in all fields" is too generic
   });
 
   test("Should show error if interest not entered", async () => {
