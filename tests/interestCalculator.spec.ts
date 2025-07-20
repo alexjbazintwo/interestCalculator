@@ -20,7 +20,7 @@ test.describe("Interest Calculator App", () => {
   ];
 
   for (const { principal, rate, duration } of testCases) {
-    test(`If the initial principal=${principal}, the rate=${rate}% and the duration=${duration}, then the output should be as expected`, async () => {
+    test(`The interest and total outputs are as expected when principal=${principal}, the rate=${rate}% and duration=${duration}`, async () => {
       await interestPage.setPrincipalAmount(principal);
       await interestPage.selectInterestRate(rate);
       await interestPage.selectDuration(duration);
@@ -81,6 +81,12 @@ test.describe("Interest Calculator App", () => {
     });
   }
 
+  // FAILS ACCESSIBILITY WITH 4 VIOLATIONS
+  test("Accessibility checks should pass", async ({ page }) => {
+    const results = await checkA11y(page);
+    expect(results.violations.length).toBe(0);
+  });
+
   test("Form inputs and buttons should be reachable by keyboard", async ({
     page,
   }) => {
@@ -90,12 +96,6 @@ test.describe("Interest Calculator App", () => {
       () => document.activeElement?.tagName
     );
     expect(activeElement).not.toBe("BODY");
-  });
-
-  // FAILS ACCESSIBILITY WITH 4 VIOLATIONS
-  test("Accessibility checks should pass", async ({ page }) => {
-    const results = await checkA11y(page);
-    expect(results.violations.length).toBe(0);
   });
 
   test("Page should load and respond fast enough", async ({ page }) => {
